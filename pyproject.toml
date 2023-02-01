@@ -4,10 +4,14 @@ version = "0.1.0"
 description = ""
 authors = ["Lev Zharikov <leozaur1808@gmail.com>"]
 readme = "README.md"
+packages = [{include = "subscriptlib"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
 
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.1"
 
 [build-system]
 requires = ["poetry-core"]
