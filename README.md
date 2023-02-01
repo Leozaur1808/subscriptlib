@@ -32,3 +32,9 @@ Result:
 H²O²
 ```
 
+## Meta
+Lev Zharikov - lev_zharikov@outlook.com
+
+Distributed under MIT License, see LICENSE for more information
+
+https://github.com/Leozaur1808/subscriptlib
