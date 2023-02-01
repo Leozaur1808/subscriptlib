@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 on:
   push:
     branches: [main]
@@ -66,3 +67,47 @@ jobs:
       # And finally run tests. I'm using pytest and all my pytest config is in my `pyproject.toml`
       # so this line is super-simple. But it could be as complex as you need.
       - run: poetry run pytest
+=======
+name: CI
+
+on: [push]
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+
+      - name: Install Poetry
+        uses: dschep/install-poetry-action@v1.2
+
+
+      - name: Set Poetry
+        run: |
+          poetry init
+
+      - name: Cache Poetry virtualenv
+        uses: actions/cache@v1
+        id: cache
+        with:
+          path: ~/.virtualenvs
+          key: poetry-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: |
+            poetry-${{ hashFiles('**/poetry.lock') }}
+
+      - name: Install Dependencies
+        run: poetry install --with dev
+        if: steps.cache.outputs.cache-hit != 'true'
+
+      - name: Test with pytest
+        run: poetry run pytest
+>>>>>>> origin/main
